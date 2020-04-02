@@ -1,0 +1,6 @@
+C:\Users\sleon\Downloads\UCO\2020-1\COMPLEJIDAD DE ALGORITMOS\Graph\Graph\bin\Debug\Graph.exe.config
+C:\Users\sleon\Downloads\UCO\2020-1\COMPLEJIDAD DE ALGORITMOS\Graph\Graph\bin\Debug\Graph.exe
+C:\Users\sleon\Downloads\UCO\2020-1\COMPLEJIDAD DE ALGORITMOS\Graph\Graph\bin\Debug\Graph.pdb
+C:\Users\sleon\Downloads\UCO\2020-1\COMPLEJIDAD DE ALGORITMOS\Graph\Graph\obj\Debug\Graph.csprojAssemblyReference.cache
+C:\Users\sleon\Downloads\UCO\2020-1\COMPLEJIDAD DE ALGORITMOS\Graph\Graph\obj\Debug\Graph.exe
+C:\Users\sleon\Downloads\UCO\2020-1\COMPLEJIDAD DE ALGORITMOS\Graph\Graph\obj\Debug\Graph.pdb
