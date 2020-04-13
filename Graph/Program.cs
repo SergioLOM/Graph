@@ -13,7 +13,6 @@ namespace Graph
         string patternND1 = @"^[1-4]{1}\s*-\s*[1-4]{1}$";
         string patternND2 = @"^[1-3]{1}\s*-\s*[1-3]{1}$";
         string patternND3 = @"^[1-2]{1}\s*-\s*[1-2]{1}$";
-        string patternD = @"^[1-5]{1}\s*>\s*[1-5]{1}$";
 
         private string[,] matriz;
         string numNodes;
@@ -30,6 +29,7 @@ namespace Graph
         {
             Console.WriteLine("How many nodes? (Max 5)");
             numNodes = Console.ReadLine();
+            numNodes = numNodes.Trim();
             if (numNodes.Length>1 || string.IsNullOrEmpty(numNodes))
             {
                 Console.WriteLine("Enter a number between 1 and 5.");
@@ -174,6 +174,10 @@ namespace Graph
         public void VerifyIfDirected(string[,] matriz, int[] nodes, string isDirected)
         {
             if (isDirected.Equals("n") || isDirected.Equals("N")) {
+                //if (nodes[0] == nodes[1] || nodes[2] == nodes[3])
+                //{
+
+                //}
                 if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
                 {
                     matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "o";
@@ -192,8 +196,17 @@ namespace Graph
                 string[] edgeSplited = edge.Split('-');
                 if (matriz[nodes[0],nodes[1]].Contains(edgeSplited[0]))
                 {
-                    matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "o";
-                    matriz[nodes[2], nodes[3]] = ">" + matriz[nodes[2], nodes[3]];
+                    if (nodes[1]==nodes[3])
+                    {
+                        matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "o";
+                        matriz[nodes[2], nodes[3]] = "v" + matriz[nodes[2], nodes[3]];
+                    }
+                    else
+                    {
+                        matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "o";
+                        matriz[nodes[2], nodes[3]] = ">" + matriz[nodes[2], nodes[3]];
+                    }
+                    
                     if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
                     {
                         PrintDotsOne(nodes, matriz);
@@ -205,8 +218,17 @@ namespace Graph
                 }
                 else
                 {
-                    matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "<";
-                    matriz[nodes[2], nodes[3]] = "o" + matriz[nodes[2], nodes[3]];
+                    if (nodes[1] == nodes[3])
+                    {
+                        matriz[nodes[0], nodes[1]] = "^" + matriz[nodes[0], nodes[1]] ;
+                        matriz[nodes[2], nodes[3]] = "o" + matriz[nodes[2], nodes[3]];
+                    }
+                    else
+                    {
+                        matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "<";
+                        matriz[nodes[2], nodes[3]] = "o" + matriz[nodes[2], nodes[3]];
+                    }
+                  
                     if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
                     {
                         PrintDotsOne(nodes, matriz);
