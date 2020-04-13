@@ -174,33 +174,21 @@ namespace Graph
         public void VerifyIfDirected(string[,] matriz, int[] nodes, string isDirected)
         {
             if (isDirected.Equals("n") || isDirected.Equals("N")) {
-                
-                if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3] && (nodes[0] != nodes[1] && nodes[2] != nodes[3]))
+                //if (nodes[0] == nodes[1] || nodes[2] == nodes[3])
+                //{
+
+                //}
+                if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
                 {
                     matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "o";
                     matriz[nodes[2], nodes[3]] = "o" + matriz[nodes[2], nodes[3]];
                     PrintDotsOne(nodes, matriz);
                 }
-                else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3] && (nodes[0] != nodes[1] && nodes[2] != nodes[3]))
+                else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3])
                 {
                     matriz[nodes[0], nodes[1]] = "o" + matriz[nodes[0], nodes[1]];
                     matriz[nodes[2], nodes[3]] = matriz[nodes[2], nodes[3]] + "o";
                     PrintDotsTwo(nodes, matriz);
-                }
-                else
-                {
-                    if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
-                    {
-                        matriz[nodes[0], nodes[1]] = matriz[nodes[0], nodes[1]] + "o";
-                        matriz[nodes[2], nodes[3]] = "o" + matriz[nodes[2], nodes[3]];
-                        PrintDiagonalDots(nodes, matriz);
-                    }
-                    else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3])
-                    {
-                        matriz[nodes[0], nodes[1]] = "o" + matriz[nodes[0], nodes[1]];
-                        matriz[nodes[2], nodes[3]] = matriz[nodes[2], nodes[3]] + "o";
-                        PrintDiagonalDots(nodes, matriz);
-                    }
                 }
             }
             else
@@ -219,17 +207,13 @@ namespace Graph
                         matriz[nodes[2], nodes[3]] = ">" + matriz[nodes[2], nodes[3]];
                     }
                     
-                    if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3] && (nodes[0] != nodes[1] && nodes[2]!=nodes[3]))
+                    if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
                     {
                         PrintDotsOne(nodes, matriz);
                     }
-                    else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3] && (nodes[0] != nodes[1] && nodes[2] != nodes[3]))
+                    else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3])
                     {
                         PrintDotsTwo(nodes, matriz);
-                    }
-                    else
-                    {
-                        PrintDiagonalDots(nodes, matriz);
                     }
                 }
                 else
@@ -245,17 +229,13 @@ namespace Graph
                         matriz[nodes[2], nodes[3]] = "o" + matriz[nodes[2], nodes[3]];
                     }
                   
-                    if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3] && (nodes[0] != nodes[1] && nodes[2] != nodes[3]))
+                    if (nodes[0] <= nodes[2] && nodes[1] <= nodes[3])
                     {
                         PrintDotsOne(nodes, matriz);
                     }
-                    else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3] && (nodes[0] != nodes[1] && nodes[2] != nodes[3]))
+                    else if (nodes[0] <= nodes[2] && nodes[1] >= nodes[3])
                     {
                         PrintDotsTwo(nodes, matriz);
-                    }
-                    else
-                    {
-                        PrintDiagonalDots(nodes, matriz);
                     }
                 } 
             }
@@ -285,80 +265,7 @@ namespace Graph
                 matriz[nodes[2], c] = matriz[nodes[2], c] + ".";
             }
         }
-
-        public void PrintDiagonalDots(int[] nodes, string[,] matriz)
-        {
-            int i = nodes[0];
-            int j = nodes[1];
-            int stopi = nodes[2];
-            int stopj = nodes[3];
-            if (nodes[0]==nodes[1] && nodes[2] < nodes[3]) //Caso 1
-            {
-                while (i==j && i<stopi)
-                {
-                    matriz[i, j] = matriz[i, j] + ".";
-                    i++;
-                    j++;
-                }
-                while (j<stopj)
-                {
-                    matriz[i, j] = matriz[i, j] + ".";
-                    j++;
-                }
-            }
-            else if (nodes[0] == nodes[1] && nodes[2] > nodes[3]) //Caso 2
-            {
-                while (i == j && j < stopj)
-                {
-                    matriz[i, j] = matriz[i, j] + ".";
-                    i++;
-                    j++;
-                }
-                while (i < stopi)
-                {
-                    matriz[i, j] = matriz[i, j] + ".";
-                    i++;
-                }
-            }
-            else if (nodes[2] == nodes[3] && nodes[0] < nodes[1]) //Caso 3
-            {
-                while (stopi == stopj && stopj > j)
-                {
-                    matriz[stopi, stopj] = matriz[stopi, stopj] + ".";
-                    stopi--;
-                    stopj--;
-                }
-                while (stopi > i)
-                {
-                    matriz[stopi, stopj] = matriz[stopi, stopj] + ".";
-                    stopi--;
-                } 
-            }
-            else if(nodes[2] == nodes[3] && nodes[0] > nodes[1]) //Caso 4
-            {
-                while (stopi == stopj && stopi > i)
-                {
-                    matriz[stopi, stopj] = matriz[stopi, stopj] + ".";
-                    stopi--;
-                    stopj--;
-                }
-                while (stopj > j)
-                {
-                    matriz[stopi, stopj] = matriz[stopi, stopj] + ".";
-                    stopj--;
-                }
-            }
-            else
-            {
-                while (i == j && i < stopi)
-                {
-                    matriz[i, j] = matriz[i, j] + ".";
-                    i++;
-                    j++;
-                }
-            }
-        }
-        //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public void GetEdges(int i) {
             List<string> edgesTotal = new List<string>();
